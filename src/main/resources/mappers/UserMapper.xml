@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="UserMapper">
+	<resultMap id="userMap" type="study.spring.selection.model.User">
+		<result property="user_no" column="user_no" />
+		<result property="user_id" column="user_id" />
+		<result property="user_pw" column="user_pw" />
+		<result property="user_email" column="user_email" />
+		<result property="user_tel" column="user_tel" />
+		<result property="user_name" column="user_name" />
+		<result property="postcode" column="postcode" />
+		<result property="address" column="address" />
+		<result property="address_detail" column="address_detail" />
+		<result property="sessionkey" column="sessionkey" />
+		<result property="sessionlimit" column="sessionlimit" />
+	</resultMap>
+
+	<!-- 회원가입 -->
+	<insert id="register"
+		parameterType="study.spring.selection.model.User"
+		useGeneratedKeys="true"
+		keyProperty="user_no">
+		INSERT INTO user (user_no, user_id, user_pw, user_email, user_tel, user_name, postcode, address, address_detail)
+		VALUES (#{user_no}, #{user_id}, #{user_pw}, #{user_email}, #{user_tel}, #{user_name}, #{postcode}, #{address}, #{address_detail});
+	</insert>
+
+	<!-- 탈퇴 시 비밀번호 체크 -->
+	<select id="checkPW" resultType="int">
+		SELECT COUNT(*) FROM user WHERE user_id = #{user_id} AND user_pw = #{user_pw}
+	</select>
+
+	<!-- 아이디 중복체크 -->
+	<select id="idCheck" resultType="int">
+		SELECT COUNT(*) FROM user WHERE user_id = #{user_id};
+	</select>
+
+	<!-- 로그인 -->
+	<select id="login"
+		resultType="study.spring.selection.model.User">
+		SELECT * FROM user
+		WHERE user_id = #{user_id} AND user_pw = #{user_pw};
+	</select>
+
+	<!-- 개인정보수정 -->
+	<update id="userUpdate"
+		parameterType="study.spring.selection.model.User">
+		UPDATE user SET user_pw=#{user_pw}, user_email=#{user_email}, user_tel=#{user_tel}, postcode=#{postcode}, address=#{address}, address_detail=#{address_detail}
+		WHERE user_id = #{user_id}
+	</update>
+
+	<!-- 회원탈퇴 -->
+	<delete id="userDelete"
+		parameterType="study.spring.selection.model.User">
+		DELETE FROM user WHERE user_id = #{user_id} AND user_pw = #{user_pw};
+	</delete>
+
+	<!-- 아이디 찾기 -->
+	<select id="findID"
+		resultType="study.spring.selection.model.User" parameterType="String">
+		SELECT user_id, user_name FROM user WHERE user_email = #{user_email}
+	</select>
+
+	<!-- 아이디찾기 이메일 존재여부 체크 -->
+	<select id="emailCheck" resultType="int">
+		SELECT COUNT(*) FROM user WHERE user_email = #{user_email};
+	</select>
+
+	<!-- 비밀번호 찾기 -->
+	<select id="getPw" parameterType="java.util.Map" resultType="java.lang.String">
+		SELECT user_pw FROM user WHERE user_id = #{user_id} AND user_email = #{user_email}
+	</select>
+
+	<!-- 비밀번호 찾기 회원정보 존재여부 체크 -->
+	<select id="pwCheck" resultType="int">
+		SELECT COUNT(*) FROM user WHERE user_id = #{user_id} AND user_email = #{user_email}
+	</select>
+
+	<!-- 로그인된 경우 해당 세션id와 유효시간을 사용자 테이블에 세팅 -->
+    <update id="keepLogin">
+        UPDATE user SET sessionkey = #{sessionId}, sessionlimit = #{next} WHERE user_id = #{user_id}
+    </update>
+
+    <!-- 유효기간이 남아 있으면서 해당 sessionId를 가지는 사용자 정보를 꺼내오는 부분 -->
+    <select id="checkUserSessionKey"
+    	resultType="study.spring.selection.model.User">
+        SELECT * from user WHERE sessionkey = #{sessionId} AND sessionlimit > now()
+    </select>
+
+</mapper>

@@ -1,0 +1,482 @@
+/* 비어있을 때 */
+#container {
+    margin-top: 10px;
+    padding: 0 15px;
+}
+
+/**상단 텍스트 */
+.page-header {
+	padding: 15px;
+	background-color: rgb(236, 226, 219);
+	color: #666;
+	line-height: 25px;
+    font-size: 15px;
+}
+
+/* 체크박스 */
+#checkBox input[id="cartCount"] + label {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: url(../image/notchecked_checkbox2.png) center;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+#checkBox input[id="cartCount"]:checked + label {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: url(../image/checked_checkbox2.png) no-repeat center;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+#checkBox input[id="cartCount"] {
+    display: none;
+}
+
+#checkBox label, span {
+    vertical-align: middle;
+    margin-right: 5px;
+    font-size: 14px;
+    color: #666;
+}
+
+#text-area {
+    text-align: center;
+    height: 230px;
+    line-height: 230px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #666;
+}
+
+#continue-button {
+    margin-bottom: 45px;
+}
+
+#continue-button a {
+    display: block;
+    height: 40px;
+    background-color: #D0A793;
+    text-align: center;
+    line-height: 40px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/** 마이하트에 상품이 존재할 때 */
+
+#checkBox {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 0 15px;
+}
+
+input[id="allCheck"] + label {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: url(../image/notchecked_checkbox2.png) center;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+input[id="allCheck"]:checked + label {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: url(../image/checked_checkbox2.png) no-repeat center;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+input[id="allCheck"] {
+    display: none;
+}
+
+input[class="chkBox"] + label {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: url(../image/notchecked_checkbox2.png) center;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+input[class="chkBox"]:checked + label {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: url(../image/checked_checkbox2.png) no-repeat center;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+input[class="chkBox"] {
+    display: none;
+}
+
+label, span {
+    vertical-align: middle;
+    margin-right: 5px;
+    font-size: 14px;
+    color: #666;
+}
+
+#text-area {
+    text-align: center;
+    height: 230px;
+    line-height: 230px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #666;
+}
+
+#continue-button {
+    margin-bottom: 55px;
+}
+
+#continue-button a {
+    display: block;
+    height: 40px;
+    background-color: #D0A793;
+    text-align: center;
+    line-height: 40px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+#order_list_wrap {
+    border-top: 1px solid #f1f1f1;
+}
+
+#order_list_wrap .order_box {
+    padding: 0 15px 5px 15px;
+    box-sizing: border-box;
+    border-bottom: 8px solid rgb(236, 226, 219);
+    margin-bottom: 10px;
+}
+
+#order_list_wrap .order_box .truck {
+    background-color: #fff;
+    height: 37px;
+    padding: 15px 40px;
+    position: relative;
+    line-height: 21px;
+    background: url("../image/truck.png") no-repeat 0 16.5px;
+}
+
+#order_list_wrap .order_box .pickup {
+    background-color: #fff;
+    height: 37px;
+    padding: 15px 40px;
+    position: relative;
+    line-height: 21px;
+    background: url("../image/pickup.png") no-repeat 1px 18px;
+}
+
+#cancel_box {
+    background-color: #ccc;
+    width: 100px;
+    height: 50px;
+    position: absolute;
+    right: 10px;
+    top: 28px;
+}
+
+#cancel_box img {
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+}
+
+#order_list_wrap .order_box .order_item_ul > li {
+    padding-top: 20px;
+    padding-bottom: 15px;
+}
+
+#order_list_wrap .order_box .order_item_ul .order_item_img {
+    float: left;
+    width: 25%;
+    padding-right: 10px;
+}
+
+#order_list_wrap .order_box .order_item_ul .order_item_content:after {
+    content: ""; display:block; clear: both;
+}
+
+#order_list_wrap .order_box .order_item_ul .order_item_content ul {
+    float: left;
+}
+
+#order_list_wrap .order_box .order_item_ul .order_item_content span {
+    font-size: 14px;
+    color: #666;
+}
+
+#order_list_wrap .order_box .order_item_ul .order_item_content .item_name {
+    font-weight: bold;
+}
+
+#order_list_wrap .order_box .order_item_ul .order_item_content .first {
+    padding-bottom: 1px;
+}
+
+#order_list_wrap .order_box .order_item_ul .order_item_content .first_half {
+    padding-bottom: 7px;
+}
+
+#order_list_wrap .order_box .order_item_ul .order_item_content .second {
+    padding-bottom: 7px;
+}
+
+#order_list_wrap .order_box .order_item_ul .order_item_content .third {
+    padding-bottom: 30px;
+}
+
+#order_list_wrap .order_box .order_item_ul .order_item_content .fourth span {
+    font-size: 13px;
+}
+
+#order_list_wrap .order_box .order_item_ul .order_item_content .fourth span.stage {
+    color: #E46764;
+}
+
+
+#order_list_wrap .order_box .order_item_ul .order_item_img img {
+    width: 100%;
+}
+
+#order_list_wrap .order_box .order_info .deliv_method {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#order_list_wrap .order_box .order_info .deliv_sub {
+    font-size: 13px;
+    color: #666;
+}
+
+#order_list_wrap .order_box .order_info .menu_vertical > img {
+    position: absolute;
+    right: 0;
+    top: 20px;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+}
+
+#button_container {
+    padding: 0 15px;
+}
+
+
+.btn3 {
+    padding-top: 10px;
+    text-align: center;
+    margin-bottom: 70px;
+    border: none;
+}
+
+
+.btn3 button {
+    width: 100%;
+    height: 40px;
+    box-sizing: border-box;
+    font-size: 14px;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    padding: 8px 15px;
+    background-color: #D0A793;
+    outline: none;
+}
+
+
+
+.btn2 .chor {
+    margin-top: 10px;
+    display: block;
+    text-align: center;
+    background: rgb(208, 167, 147);
+    height: 40px;
+    width: 100%;
+    line-height: 40px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 50px;
+}
+
+#insertCart {
+	width: 100%;
+    height: 40px;
+    box-sizing: border-box;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    padding: 8px 15px;
+    background-color: #D0A793;
+    color: #fff;
+    outline: none;
+    font-weight: bold;
+    margin-top:15px;
+    margin-bottom:70px;
+    
+}
+
+#summary_wrap {
+    width: 100%;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #666666;
+}
+
+#summary_wrap p {
+    margin-bottom: 22px;
+    font-weight: bold;
+}
+
+#summary_wrap_ul .summary_title, .summary_content {
+    width: 49%;
+    display: inline-block;
+}
+
+#summary_wrap_ul .summary_content {
+    text-align: right;
+}
+
+#summary_wrap_ul li {
+    margin-bottom: 14px;
+}
+
+#summary_wrap_ul li:last-child {
+    font-weight: bold;
+}
+
+/* 모달창 팝업 */
+#pop_container_delete {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.3);
+    display: none;
+}
+
+#pop_delete {
+    position: fixed;
+    top: 200px;
+    background: #fff;
+    width: calc(100% - 30px);
+    margin-left: 15px;
+    height: 200px;
+    font-size: 14px;
+    text-align: center;
+    box-sizing: border-box;
+    display: none;
+}
+
+#pop_delete img {
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    cursor: pointer;
+    width: 13px;
+    height: 13px;
+}
+
+#pop_delete span {
+    display: block;
+    letter-spacing: -1px;
+}
+
+#pop_delete span:first-child {
+    font-size: 16px;
+    padding-top: 80px;
+    margin-bottom: 50px;
+    color: #444444;
+}
+
+#pop_delete button {
+    width: calc(50% - 15px);
+    height: 40px;
+    background-color: rgb(208, 167, 147);
+    margin: auto;
+    color: #fff;
+    line-height: 40px;
+    font-size: 15px;
+    font-weight: bold;
+    border: none;
+    outline: none;
+}
+
+#pop_delete #button_n {
+	background-color: rgb(224, 207, 189);
+}
+
+/* 확인 모달창 팝업 */
+#pop_container_ok {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.3);
+    display: none;
+}
+
+#pop_ok {
+    position: fixed;
+    top: 200px;
+    background: #fff;
+    width: calc(100% - 30px);
+    margin-left: 15px;
+    height: 200px;
+    font-size: 14px;
+    text-align: center;
+    box-sizing: border-box;
+    display: none;
+}
+
+#pop_ok img {
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    cursor: pointer;
+    width: 13px;
+    height: 13px;
+}
+
+#pop_ok span {
+    display: block;
+    letter-spacing: -1px;
+}
+
+#pop_ok span:first-child {
+    font-size: 16px;
+    padding-top: 70px;
+    margin-bottom: 35px;
+    color: #444444;
+    line-height: 20px;
+}
+
+#pop_ok button {
+    width: calc(100% - 30px);
+    height: 40px;
+    background-color: rgb(208, 167, 147);
+    margin: auto;
+    color: #fff;
+    line-height: 40px;
+    font-size: 15px;
+    font-weight: bold;
+    border: none;
+    outline: none;
+}
+
+

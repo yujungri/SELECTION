@@ -1,0 +1,203 @@
+@charset "utf-8";
+
+ /* 상단 이미지 */
+ #Top_img {
+     background: url(../image/signup.png) no-repeat center;
+     background-size: 100% 100%;
+     height: 200px;
+     width: 100%;
+ }
+
+ #Top_img h2 {
+     padding-top: 100px;
+     padding-left: 30px;
+     font-size: 22px;
+     color: #222222;
+ }
+
+ /* *필수입력 */
+ #essn_wrap {
+     position: relative;
+     width: 100%;
+     height: 40px;
+
+ }
+
+ #essn {
+     position: absolute;
+     top: 5px;
+     right: 5px;
+ }
+
+ #essn span {
+     vertical-align: middle;
+ }
+
+ #essn span:last-child {
+     font-size: 12px;
+ }
+
+ /* 입력양식 본문 */
+ #form_wrap {
+     padding: 0 20px;
+     margin-bottom: 20px;
+
+ }
+
+ #join_form .form-group {
+     width: 100%;
+     margin-bottom: 15px;
+ }
+
+ #join_form label {
+     font-size: 14px;
+     width: 100%;
+ }
+
+ #join_form .col-md-10 {
+     margin-top: 10px;
+     width: 100%;
+ }
+
+ #join_form .form-control {
+     display: block;
+     width: 100%;
+     outline: none;
+     box-sizing: border-box;
+     padding: 5px 10px;
+     height: 35px;
+     border: 1px solid #ccc;
+     font-size: 13px;
+ }
+
+ #join_form .postcode {
+     display: inline-block;
+     width: calc(50% - 3px);
+     vertical-align: middle;
+ }
+
+ #join_form #sample6_postcode_btn {
+     background-color: rgb(208, 167, 147);
+     border: 1px solid rgb(208, 167, 147);
+     box-sizing: border-box;
+     color: white;
+     font-weight: bold;
+ }
+
+ #findadd input {
+     margin-top: 5px;
+ }
+
+ .identify {
+     color: red;
+ }
+
+ #join_form .join_form_msg {
+     color: red;
+     font-size: 12px;
+     display: none;
+     margin-top: 5px;
+     margin-bottom: 5px;
+     display: none;
+ }
+
+ #join_form .text-center {
+     margin-top: 50px;
+ }
+
+ #join_form button {
+     display: inline-block;
+     height: 40px;
+     box-sizing: border-box;
+     background: rgb(208, 167, 147);
+     width: calc(50% - 3px);
+     border: 1px solid rgb(208, 167, 147);
+     color: #fff;
+     font-weight: bold;
+     outline: none;
+ }
+
+ #join_form button:first-child {
+     background: #E0CFBD;
+     border: 1px solid #E0CFBD;
+ }
+
+ /* 취소 팝업 */
+ #pop_container {
+     width: 100%;
+     height: 100%;
+     position: fixed;
+     top: 0;
+     left: 0;
+     background: rgba(0,0,0,0.3);
+     display: none;
+ }
+
+ #pop {
+     position: fixed;
+     top: 200px;
+     background: #fff;
+     width: calc(100% - 30px);
+     margin-left: 15px;
+     height: 200px;
+     font-size: 14px;
+     text-align: center;
+     box-sizing: border-box;
+     display: none;
+ }
+
+ #pop img {
+     position: absolute;
+     top: 7px;
+     right: 7px;
+     cursor: pointer;
+     width: 13px;
+     height: 13px;
+ }
+
+ #pop span {
+     display: block;
+     letter-spacing: -1px;
+ }
+
+ #pop span:first-child {
+     font-size: 16px;
+     padding-top: 80px;
+     margin-bottom: 50px;
+     color: #444444;
+ }
+
+ #pop span:last-child {
+     width: calc(100% - 30px);
+     height: 40px;
+     background-color: rgb(208, 167, 147);
+     margin: auto;
+     color: #fff;
+     line-height: 40px;
+     font-size: 15px;
+     font-weight: bold;
+ }
+
+ #pop a {
+     color: #fff;
+     display: block;
+     width: 100%;
+ }
+
+ #deleteUser {
+     width: calc(100% - 40px);
+     height: 40px;
+     background-color: #E0CFBD;
+     margin: 0 auto 80px auto;
+     text-align: center;
+ }
+
+ #deleteUser a {
+     display: block;
+     height: 40px;
+     width: 100%;
+     line-height: 40px;
+     font-size: 13px;
+     color: #fff;
+     font-weight: bold;
+ }

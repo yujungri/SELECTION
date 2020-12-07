@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="QnaMapper">
+	<resultMap type="study.spring.selection.model.Qna" id="qnaMap">
+		<result property="qna_no" column="qna_no" />
+		<result property="qna_title" column="qna_title" />
+		<result property="qna_content" column="qna_content" />
+		<result property="qna_type" column="qna_type" />
+		<result property="reg_date" column="reg_date" />
+		<result property="edit_date" column="edit_date" />
+		<result property="user_no" column="user_no" />
+	</resultMap>
+	
+	<!-- 단일행 조회 -->
+	<select id="selectItem" parameterType="study.spring.selection.model.Qna" resultMap="qnaMap">
+		SELECT qna_no, qna_title, qna_content, qna_type, reg_date, edit_date, user_no 
+		FROM qna WHERE qna_no=#{qna_no};
+	</select>
+	
+	<!-- 다중행 조회 -->
+	<select id="selectList" parameterType="study.spring.selection.model.Qna" resultMap="qnaMap">
+		SELECT qna_no, qna_title, qna_content, qna_type, reg_date, edit_date, user_no 
+		FROM qna
+		
+		<where>
+			<if test="qna_title != null and qna_title != ''">
+				qna_title LIKE concat('%', #{qna_title}, '%')
+			</if>
+			
+			<if test="qna_content != null and qna_content != ''">
+				OR qna_content LIKE concat('%', #{qna_content}, '%')
+			</if>
+			
+			<if test="qna_type != null and qna_type != ''">
+				OR qna_type LIKE concat('%', #{qna_type}, '%')
+			</if>
+			
+			<if test="reg_date != null and reg_date != ''">
+				OR reg_date LIKE concat('%', #{reg_date}, '%')
+			</if>
+			
+			<if test="edit_date != null and edit_date != ''">
+				OR edit_date LIKE concat('%', #{edit_date}, '%')
+			</if>
+			
+			<if test="user_no != null and user_no != ''">
+				OR user_no LIKE concat('%', #{user_no}, '%')
+			</if>
+		</where>
+		
+		ORDER BY qna_no DESC
+		
+		<if test="listCount > 0">
+			LIMIT #{offset}, #{listCount}
+		</if>
+	</select>
+	
+	<!-- 데이터 저장 -->
+	<insert id="insertItem" parameterType="study.spring.selection.model.Qna" useGeneratedKeys="true" keyProperty="qna_no">
+		INSERT INTO qna (qna_title, qna_content, qna_type, reg_date, edit_date, user_no) 
+		VALUES (#{qna_title}, #{qna_content}, #{qna_type}, now(), now(), #{user_no});
+	</insert>
+	
+	<!-- 데이터 삭제-->
+	<delete id="deleteItem" parameterType="study.spring.selection.model.Qna">
+		DELETE FROM qna WHERE qna_no=#{qna_no};
+	</delete>
+	
+	<!-- 데이터 수정 -->
+	<update id="updateItem" parameterType="study.spring.selection.model.Qna">
+		UPDATE qna SET qna_type=#{qna_type} WHERE qna_no=#{qna_no};
+	</update>
+	
+	<!-- 조건에 맞는 데이터 수를 집계하여 int 타입으로 반환 -->
+	<select id="selectCountAll" parameterType="study.spring.selection.model.Qna" resultType="int">
+		SELECT COUNT(*) FROM qna
+		
+		<where>
+			<if test="qna_title != null and qna_title != ''">
+				qna_title LIKE concat('%', #{qna_title}, '%')
+			</if>
+			
+			<if test="qna_content != null and qna_content != ''">
+				OR qna_content LIKE concat('%', #{qna_content}, '%')
+			</if>
+			
+			<if test="qna_type != null and qna_type != ''">
+				OR qna_type LIKE concat('%', #{qna_type}, '%')
+			</if>
+			
+			<if test="reg_date != null and reg_date != ''">
+				OR reg_date LIKE concat('%', #{reg_date}, '%')
+			</if>
+			
+			<if test="edit_date != null and edit_date != ''">
+				OR edit_date LIKE concat('%', #{edit_date}, '%')
+			</if>
+			
+			<if test="user_no != null and user_no != ''">
+				OR user_no LIKE concat('%', #{user_no}, '%')
+			</if>
+		</where>
+	</select>
+</mapper>

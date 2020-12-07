@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MyheartMapper">
+	<resultMap id="myheartMap" type="study.spring.selection.model.Myheart">
+		<result property="myheart_no" column="myheart_no" />
+		<result property="user_no" column="user_no" />
+		<result property="product_no" column="product_no" />	
+	</resultMap>
+	
+	<!-- 마이하트 담기 -->
+	<insert id="insert">
+		INSERT INTO myheart (user_no, product_no)
+		VALUES (#{user_no}, #{product_no});
+	</insert>
+	
+	<!-- 마이하트 목록 -->
+	<select id="listMyheart" resultType="study.spring.selection.model.Myheart">
+		SELECT myheart_no, m.user_no, p.product_no, product_name, product_price, product_brand, product_img
+		FROM user u, myheart m, product p
+		WHERE u.user_no = m.user_no AND p.product_no = m.product_no AND m.user_no = #{user_no};
+	</select>
+	
+	<!-- 동일상품인지 확인 -->
+	<select id="countMyheart" resultType="int">
+		SELECT COUNT(*) FROM myheart
+		WHERE user_no = #{user_no}
+		AND product_no = #{product_no}
+	</select>
+	
+	<!-- 마이하트삭제 -->
+	<delete id="deleteMyheart">
+		DELETE FROM myheart WHERE myheart_no = #{myheart_no} AND user_no = #{user_no};
+	</delete>
+	
+	<!--디테일 페이지에서  마이하트삭제 -->
+	<delete id="delete">
+		DELETE FROM myheart WHERE product_no = #{product_no} AND user_no = #{user_no};
+	</delete>
+	
+	<!-- 마이하트 담기 -->
+	<insert id="moveMyHeart">
+		INSERT INTO cart (user_no, product_no, amount, delivery, size, color)
+		VALUES (#{user_no}, #{product_no}, #{amount}, #{delivery}, #{size}, #{color}, (SELECT product_no
+ 		  			   			FROM myheart
+			          		   WHERE user_no = #{user_no}
+					   			 AND myheart_no = #{myheart_no}));
+	</insert>
+	
+</mapper>

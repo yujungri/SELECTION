@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ProductMapper">
+    <resultMap id="productMap" type="study.spring.selection.model.Product">
+        <result property="product_no" column="product_no" />
+        <result property="product_name" column="product_name" />
+        <result property="product_price" column="product_price" />
+        <result property="product_content" column="product_content" />
+        <result property="product_brand" column="product_brand" />
+        <result property="product_category" column="product_category" />
+        <result property="product_img" column="product_img" />
+    </resultMap>
+
+    <!-- 상품 조회 -->
+    <select id="productList"
+        resultType="study.spring.selection.model.Product">
+        SELECT * FROM product
+    </select>
+
+    <!-- 상품 상세 -->
+    <select id="productDetail"
+        resultType="study.spring.selection.model.Product">
+        SELECT * FROM product WHERE product_no = #{product_no};
+    </select>
+
+    <!-- 조건에 맞는 데이터 수를 집계하여 int 타입으로 반환 -->
+    <select id="selectCountAll" parameterType="study.spring.selection.model.Product" resultType="int">
+        SELECT COUNT(*) FROM product
+
+        <where>
+            <if test="product_no != null and product_no != ''">
+                product_no LIKE concat('%', #{product_no}, '%')
+            </if>
+
+            <if test="product_name != null and product_name != ''">
+                OR product_name LIKE concat('%', #{product_name}, '%')
+            </if>
+
+            <if test="product_price != null and product_price != ''">
+                OR product_price LIKE concat('%', #{product_price}, '%')
+            </if>
+
+            <if test="product_content != null and product_content != ''">
+                OR product_content LIKE concat('%', #{product_content}, '%')
+            </if>
+
+            <if test="product_brand != null and product_brand != ''">
+                OR product_brand LIKE concat('%', #{product_brand}, '%')
+            </if>
+
+            <if test="product_category != null and product_category != ''">
+                AND product_category LIKE concat('%', #{product_category}, '%')
+            </if>
+
+            <if test="product_img != null and product_img != ''">
+                OR product_img LIKE concat('%', #{product_img}, '%')
+            </if>
+        </where>
+    </select>
+
+    <!-- 다중행 조회 -->
+    <select id="selectList" parameterType="study.spring.selection.model.Product" resultMap="productMap">
+        SELECT * FROM product
+
+        <where>
+            <if test="product_no != null and product_no != ''">
+                product_no LIKE concat('%', #{product_no}, '%')
+            </if>
+
+            <if test="product_name != null and product_name != ''">
+                OR product_name LIKE concat('%', #{product_name}, '%')
+            </if>
+
+            <if test="product_price != null and product_price != ''">
+                OR product_price LIKE concat('%', #{product_price}, '%')
+            </if>
+
+            <if test="product_content != null and product_content != ''">
+                OR product_content LIKE concat('%', #{product_content}, '%')
+            </if>
+
+            <if test="product_brand != null and product_brand != ''">
+                OR product_brand LIKE concat('%', #{product_brand}, '%')
+            </if>
+
+            <if test="product_category != null and product_category != ''">
+                AND product_category LIKE concat('%', #{product_category}, '%')
+            </if>
+
+            <if test="product_img != null and product_img != ''">
+                OR product_img LIKE concat('%', #{product_img}, '%')
+            </if>
+        </where>
+
+        ORDER BY product_no ASC
+
+        <if test="listCount > 0">
+            LIMIT #{offset}, #{listCount}
+        </if>
+    </select>
+
+    <!-- 가격낮은순 조회 -->
+    <select id="selectLowPriceList" parameterType="study.spring.selection.model.Product" resultMap="productMap">
+        SELECT * FROM product
+
+        <where>
+            <if test="product_no != null and product_no != ''">
+                product_no LIKE concat('%', #{product_no}, '%')
+            </if>
+
+            <if test="product_name != null and product_name != ''">
+                OR product_name LIKE concat('%', #{product_name}, '%')
+            </if>
+
+            <if test="product_price != null and product_price != ''">
+                OR product_price LIKE concat('%', #{product_price}, '%')
+            </if>
+
+            <if test="product_content != null and product_content != ''">
+                OR product_content LIKE concat('%', #{product_content}, '%')
+            </if>
+
+            <if test="product_brand != null and product_brand != ''">
+                OR product_brand LIKE concat('%', #{product_brand}, '%')
+            </if>
+
+            <if test="product_category != null and product_category != ''">
+                AND product_category LIKE concat('%', #{product_category}, '%')
+            </if>
+
+            <if test="product_img != null and product_img != ''">
+                OR product_img LIKE concat('%', #{product_img}, '%')
+            </if>
+        </where>
+
+        ORDER BY product_price ASC
+
+        <if test="listCount > 0">
+            LIMIT #{offset}, #{listCount}
+        </if>
+    </select>
+
+    <!-- 가격높은순 조회 -->
+    <select id="selectHighPriceList" parameterType="study.spring.selection.model.Product" resultMap="productMap">
+        SELECT * FROM product
+
+        <where>
+            <if test="product_no != null and product_no != ''">
+                product_no LIKE concat('%', #{product_no}, '%')
+            </if>
+
+            <if test="product_name != null and product_name != ''">
+                OR product_name LIKE concat('%', #{product_name}, '%')
+            </if>
+
+            <if test="product_price != null and product_price != ''">
+                OR product_price LIKE concat('%', #{product_price}, '%')
+            </if>
+
+            <if test="product_content != null and product_content != ''">
+                OR product_content LIKE concat('%', #{product_content}, '%')
+            </if>
+
+            <if test="product_brand != null and product_brand != ''">
+                OR product_brand LIKE concat('%', #{product_brand}, '%')
+            </if>
+
+            <if test="product_category != null and product_category != ''">
+                AND product_category LIKE concat('%', #{product_category}, '%')
+            </if>
+
+            <if test="product_img != null and product_img != ''">
+                OR product_img LIKE concat('%', #{product_img}, '%')
+            </if>
+        </where>
+
+        ORDER BY product_price DESC
+
+        <if test="listCount > 0">
+            LIMIT #{offset}, #{listCount}
+        </if>
+    </select>
+    
+    <!-- ProductAll 조회 -->
+    <select id="ProductAllList" parameterType="study.spring.selection.model.Product" resultMap="productMap">
+        SELECT * FROM product
+        WHERE product_category != 'Best' AND product_category != 'New' AND product_category != 'Recommend'
+        <if test="product_name != null and product_name != ''">
+            AND product_name LIKE concat('%', #{product_name}, '%')
+        </if>
+        ORDER BY product_no ASC
+        
+        <if test="listCount > 0">
+            LIMIT #{offset}, #{listCount}
+        </if>
+    </select>
+    
+    <!-- 조건에 맞는 데이터 수를 집계하여 int 타입으로 반환 -->
+    <select id="selectCountProductAll" parameterType="study.spring.selection.model.Product" resultType="int">
+        SELECT COUNT(DISTINCT product_img) FROM product
+        <where>
+            <if test="product_no != null and product_no != ''">
+                product_no LIKE concat('%', #{product_no}, '%')
+            </if>
+
+            <if test="product_name != null and product_name != ''">
+                OR product_name LIKE concat('%', #{product_name}, '%')
+            </if>
+
+            <if test="product_price != null and product_price != ''">
+                OR product_price LIKE concat('%', #{product_price}, '%')
+            </if>
+
+            <if test="product_content != null and product_content != ''">
+                OR product_content LIKE concat('%', #{product_content}, '%')
+            </if>
+
+            <if test="product_brand != null and product_brand != ''">
+                OR product_brand LIKE concat('%', #{product_brand}, '%')
+            </if>
+
+            <if test="product_category != null and product_category != ''">
+                AND product_category LIKE concat('%', #{product_category}, '%')
+            </if>
+
+            <if test="product_img != null and product_img != ''">
+                OR product_img LIKE concat('%', #{product_img}, '%')
+            </if>
+        </where>
+    </select>
+    
+    <!-- ProductAll 가격낮은순 조회 -->
+    <select id="selectProductAllLowPriceList" parameterType="study.spring.selection.model.Product" resultMap="productMap">
+        SELECT * FROM product
+        WHERE product_category != 'Best' AND product_category != 'New' AND product_category != 'Recommend'
+        
+        ORDER BY product_price ASC
+
+        <if test="listCount > 0">
+            LIMIT #{offset}, #{listCount}
+        </if>
+    </select>
+    
+    <!-- ProductAll 가격높은순 조회 -->
+    <select id="selectProductAllHighPriceList" parameterType="study.spring.selection.model.Product" resultMap="productMap">
+        SELECT * FROM product
+        WHERE product_category != 'Best' AND product_category != 'New' AND product_category != 'Recommend'
+        
+        ORDER BY product_price DESC
+
+        <if test="listCount > 0">
+            LIMIT #{offset}, #{listCount}
+        </if>
+    </select>
+
+    <!-- 마이하트 -->
+    <select id="productMyheart"
+        resultType="map">
+        SELECT myheart_no
+          FROM myheart
+         WHERE product_no=#{product_no}
+           AND user_no=#{user_no};
+    </select>
+</mapper>

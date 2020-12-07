@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AnswerMapper">
+	<resultMap type="study.spring.selection.model.Answer" id="answerMap">
+		<result property="answer_no" column="answer_no" />
+		<result property="answer_content" column="answer_content" />
+		<result property="reg_date" column="reg_date" />
+		<result property="answer_writer" column="answer_writer" />
+		<result property="qna_no" column="qna_no" />
+	</resultMap>
+	
+	<!-- 단일행 조회 -->
+	<select id="selectItem" parameterType="study.spring.selection.model.Answer" resultMap="answerMap">
+		SELECT answer_no, answer_content, reg_date, answer_writer, qna_no 
+		FROM answer WHERE answer_no=#{answer_no};
+	</select>
+	
+	<!-- 다중행 조회 -->
+	<select id="selectList" parameterType="study.spring.selection.model.Answer" resultMap="answerMap">
+		SELECT answer_no, answer_content, reg_date, answer_writer, qna_no 
+		FROM answer
+		
+		<where>
+			<if test="answer_content != null and answer_content != ''">
+				answer_content LIKE concat('%', #{answer_content}, '%')
+			</if>
+			
+			<if test="reg_date != null and reg_date != ''">
+				OR reg_date LIKE concat('%', #{reg_date}, '%')
+			</if>
+			
+			<if test="answer_writer != null and answer_writer != ''">
+				OR answer_writer LIKE concat('%', #{answer_writer}, '%')
+			</if>
+			
+			<if test="qna_no != null and qna_no != ''">
+				OR qna_no LIKE concat('%', #{qna_no}, '%')
+			</if>
+		</where>
+		
+		ORDER BY answer_no DESC
+		
+		<if test="listCount > 0">
+			LIMIT #{offset}, #{listCount}
+		</if>
+	</select>
+	
+	<!-- 데이터 저장 -->
+	<insert id="insertItem" parameterType="study.spring.selection.model.Answer" useGeneratedKeys="true" keyProperty="answer_no">
+		INSERT INTO answer (answer_content, reg_date, answer_writer, qna_no) 
+		VALUES (#{answer_content}, now(), #{answer_writer}, #{qna_no});
+	</insert>
+	
+	<!-- 데이터 삭제-->
+	<delete id="deleteItem" parameterType="study.spring.selection.model.Answer">
+		DELETE FROM answer WHERE answer_no=#{answer_no};
+	</delete>
+	
+	<!-- 데이터 수정 -->
+	<update id="updateItem" parameterType="study.spring.selection.model.Answer">
+		UPDATE answer SET answer_content=#{answer_content} WHERE answer_no=#{answer_no};
+	</update>
+	
+	<!-- 조건에 맞는 데이터 수를 집계하여 int 타입으로 반환 -->
+	<select id="selectCountAll" parameterType="study.spring.selection.model.Answer" resultType="int">
+		SELECT COUNT(*) FROM answer
+		
+		<where>
+			<if test="answer_content != null and answer_content != ''">
+				answer_content LIKE concat('%', #{answer_content}, '%')
+			</if>
+			
+			<if test="reg_date != null and reg_date != ''">
+				OR reg_date LIKE concat('%', #{reg_date}, '%')
+			</if>
+			
+			<if test="answer_writer != null and answer_writer != ''">
+				OR answer_writer LIKE concat('%', #{answer_writer}, '%')
+			</if>
+			
+			<if test="qna_no != null and qna_no != ''">
+				OR qna_no LIKE concat('%', #{qna_no}, '%')
+			</if>
+		</where>
+	</select>
+</mapper>
